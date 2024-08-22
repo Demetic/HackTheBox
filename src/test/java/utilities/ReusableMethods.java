@@ -24,16 +24,14 @@ public class ReusableMethods {
  This method captures sscreenshot of the entire page
  */
     public static void takeScreenshotOfTheEntirePage() throws IOException {
-//        1. TakeScreenShot class with getScreenShotAs method to capture the screenshot
+
         File image = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-//        2. Create a path to save the image
-//        Create a date for giving dynamic name otherwise the screenshots overrides
-        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());//getting local date in this format
-//                     CURRENT PROJECT FOLDER         foldername   subfoldername imagename
+
+        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String path = System.getProperty("user.dir")+"/testOutput/Screenshots/"+now+"image.png";
-//        3. Save the image in the path as a file
+
         FileUtils.copyFile(image,new File(path));
-//        FileUtils.copyFile(FILE,FILE PATH); COPY FILE TO THAT FILE PATH
+
     }
 
     /*
@@ -52,32 +50,26 @@ public class ReusableMethods {
     return new File(path).getAbsolutePath();
      */
     public static String takeScreenshotOfTheEntirePageAsString() throws IOException {
-        //        1. TakeScreenShot class with getScreenShotAs method to capture the screenshot
+
         File image = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-        //        2. Create a path to save the image
-        //        Create a date for giving dynamic name otherwise the screenshots overrides
-        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());//getting local date in this format
-        //                     CURRENT PROJECT FOLDER         foldername   subfoldername imagename
+
+        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String path = System.getProperty("user.dir")+"/test-output/Reports/Screenshots/"+now+"image.png";
-        //        3. Save the image in the path as a file
+
         FileUtils.copyFile(image,new File(path));
-        //        GETTING THE ABSOLUTE PATH OF THE IMAGE PATH THAT IS STRING
+
         return new File(path).getAbsolutePath();
     }
     public static String takeScreenshotAllScreen(String name){
-//        THIS METHOD TAKES SCREENSHOT AND STORE IN /test-output FOLDER
-//        NAME OF THE SCREEN IS BASED ON THE CURRENT TIME
-//        SO THAN WE CAN HAVE UNIQUE NAME
-        // naming the screenshot with the current date to avoid duplication
+
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-//        public static final String path = date.toString();
-        // TakesScreenshot is an interface of selenium that takes the screenshot. SAME IS IN THE HOOKS
+
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
-        // full path to the screenshot location
+
         String target = System.getProperty("user.dir") + "/testOutput/Screenshots/" + name + date + ".png";
         File finalDestination = new File(target);
-        // save the screenshot to the path given
+
         try {
             FileUtils.copyFile(source, finalDestination);
         } catch (IOException e) {
@@ -86,32 +78,26 @@ public class ReusableMethods {
         return target;
     }
     public static void takeScreenshotAllScreen(){
-//        1. TakeScreenShot class with getScreenShotAs method to capture the screenshot
+
         File image = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-//
-//        2. Create a path to save the image
-//        Create a date for giving dynamic name otherwise the screenshots overrides
-        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());//getting local date in this format
-//                     CURRENT PROJECT FOLDER         foldername   subfoldername imagename
+
+        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String path = System.getProperty("user.dir") +"/testOutput/Screenshots/" + now + "image.png";
-//        3. Save the image in the path as a file
+
         try {
             FileUtils.copyFile(image,new File(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    //we use this method to add screenshots on our reports
+
     public static String takeScreenshotAllScreenAsString(){
-//        1. TakeScreenShot class with getScreenShotAs method to capture the screenshot
+
         File image = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-//
-//        2. Create a path to save the image
-//        Create a date for giving dynamic name otherwise the screenshots overrides
-        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());//getting local date in this format
-//                     CURRENT PROJECT FOLDER         foldername   subfoldername imagename
+
+        String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String path = System.getProperty("user.dir") +"/testOutput/Screenshots/" + now + "image.png";
-//        3. Save the image in the path as a file
+
         try {
             FileUtils.copyFile(image,new File(path));
         } catch (IOException e) {
@@ -120,7 +106,7 @@ public class ReusableMethods {
         return path;
     }
 
-    //webElement ScreenShot
+
     public static void takeScreenshotWebElement(WebElement element){
         String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String filePath = System.getProperty("user.dir") + "/testOutput/screenshots/webElementScreenShots/" + now + "webElementScreenShot.png";
@@ -131,7 +117,7 @@ public class ReusableMethods {
             throw new RuntimeException(e);
         }
     }
-    //we use this method to add screenshots on our reports
+
     public static String takeScreenshotWebElementAsString(WebElement element){
         String now = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String filePath = System.getProperty("user.dir") + "/testOutput/screenshots/webElementScreenShots/" + now + "webElementScreenShot.png";
@@ -143,7 +129,7 @@ public class ReusableMethods {
         }
         return filePath;
     }
-    //========Switching Window=====//
+
     public static void switchToWindow(String targetTitle) {
         String origin = Driver.getDriver().getWindowHandle();
         for (String handle : Driver.getDriver().getWindowHandles()) {
@@ -155,7 +141,7 @@ public class ReusableMethods {
         Driver.getDriver().switchTo().window(origin);
     }
 
-    //========switchToTab=====//
+
     public static void switchToTab(String tabTitle){
         var windows = Driver.getDriver().getWindowHandles();
 
@@ -176,18 +162,18 @@ public class ReusableMethods {
         }
     }
 
-    //========switchToNewTab=====//
+
     public static void switchToNewTab(){
         var windows = Driver.getDriver().getWindowHandles();
         windows.forEach(Driver.getDriver().switchTo()::window);
     }
-    //========Hover Over=====//
+
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).perform();
     }
 
-    //==========Return a list of string given a list of Web Element====////
+
     public static List<String> getElementsText(List<WebElement> list) {
         List<String> elemTexts = new ArrayList<>();
         for (WebElement el : list) {
@@ -198,7 +184,7 @@ public class ReusableMethods {
         return elemTexts;
     }
 
-    //========Returns the Text of the element given an element locator==//
+
     public static List<String> getElementsText(By locator) {
         List<WebElement> elems = Driver.getDriver().findElements(locator);
         List<String> elemTexts = new ArrayList<>();
@@ -210,8 +196,7 @@ public class ReusableMethods {
         return elemTexts;
     }
 
-    //   HARD WAIT WITH THREAD.SLEEP
-//   waitFor(5);  => waits for 5 second => Thread.sleep(5000)
+
     public static void waitFor(int sec) {
         try {
             Thread.sleep(sec * 1000);
@@ -219,7 +204,7 @@ public class ReusableMethods {
             e.printStackTrace();
         }
     }
-    //===============Explicit Wait==============//
+
     public static WebElement waitForVisibility(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOf(element));
@@ -253,12 +238,12 @@ public class ReusableMethods {
     }
 
 
-    //======Fluent Wait====//
+
     public static WebElement fluentWait(final WebElement webElement) {
-        //FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver()).withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS);
+
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
-                .withTimeout(Duration.ofSeconds(3))//Wait 3 second each time
-                .pollingEvery(Duration.ofSeconds(1))////Check for the element every 1 second
+                .withTimeout(Duration.ofSeconds(3))
+                .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchMethodException.class);
 
         WebElement element = wait.until(new Function<WebDriver, WebElement>() {
@@ -269,7 +254,7 @@ public class ReusableMethods {
 
         return element;
     }
-    //    This can be used when a new page opens
+
     public static void waitForPageToLoad(long timeout) {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -285,12 +270,12 @@ public class ReusableMethods {
                     "Timeout waiting for Page Load Request to complete after " + timeout + " seconds");
         }
     }
-    //======Fluent Wait====
-    // params : xpath of teh element , max timeout in seconds, polling in second
+
+
     public static WebElement fluentWait(String xpath, int withTimeout, int pollingEvery) {
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
-                .withTimeout(Duration.ofSeconds(withTimeout))//Wait 3 second each time
-                .pollingEvery(Duration.ofSeconds(pollingEvery))//Check for the element every 1 second
+                .withTimeout(Duration.ofSeconds(withTimeout))
+                .pollingEvery(Duration.ofSeconds(pollingEvery))
                 .withMessage("Ignoring No Such Element Exception")
                 .ignoring(NoSuchElementException.class);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));

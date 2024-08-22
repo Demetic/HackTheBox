@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="73.674" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="User Creation" name="User Creation" time="73.423">
+<system-out><![CDATA[
+Given user navigates to hackthebox home page................................passed
+When user clicks For Individuals button.....................................passed
+Then user clicks Join for free button.......................................passed
+And user enter valid e mail address then sign up button.....................passed
+And user enter valid password then click continue button....................passed
+And user enter valid username...............................................passed
+And user enter valid fullname...............................................passed
+And user select country.....................................................passed
+And user enter valid date of birth..........................................passed
+And user click user agreement and the privacy notice check box..............passed
+And user clicks create account button.......................................passed
+And verify pending e mail verification alert................................passed
+And user open verification email and verify e mail address link.............passed
+And verify user account created.............................................passed
+]]></system-out>
+</testcase>
+</testsuite>
