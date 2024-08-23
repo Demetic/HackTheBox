@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="73.674" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="User Creation" name="User Creation" time="73.423">
+<testsuite name="Cucumber" time="95.95" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="User Creation" name="User Creation" time="95.703">
 <system-out><![CDATA[
 Given user navigates to hackthebox home page................................passed
 When user clicks For Individuals button.....................................passed
