@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="HackTheBoxTEST" />
         <module name="DatabaseValidattion151" />
-        <module name="ManagementOnSchoolsEndToEnd" />
         <module name="hackthebox" />
+        <module name="Test" />
       </profile>
     </annotationProcessing>
   </component>

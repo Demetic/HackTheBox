@@ -13,20 +13,20 @@ public class ExcelReader {
     Workbook workbook;
     Sheet sheet;
 
-    public ExcelReader(String dosyaYolu, String sayfaIsmi){
+    public ExcelReader(String path, String sheet1){
 
         try {
-            FileInputStream fis = new FileInputStream(dosyaYolu);
+            FileInputStream fis = new FileInputStream(path);
             workbook = WorkbookFactory.create(fis);
-            sheet=workbook.getSheet(sayfaIsmi);
+            sheet=workbook.getSheet(sheet1);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     //Satir ve sutun sayilarini girdigimizde, o hucredeki veriyi return eden method
-    public String getCellData(int satir,int sutun){
-        Cell cell = sheet.getRow(satir).getCell(sutun);
+    public String getCellData(int row,int column){
+        Cell cell = sheet.getRow(row).getCell(column);
         return cell.toString();
 
     }
